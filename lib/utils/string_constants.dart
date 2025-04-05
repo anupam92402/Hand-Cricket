@@ -12,5 +12,7 @@ class StringConstants {
   static const one = '1';
   static const two = '2';
   static const three = '3';
+  static const pickNumberBeforeTimer = 'Pick a number before timer runs out';
+  static const scapia = 'scapia';
 
 }
