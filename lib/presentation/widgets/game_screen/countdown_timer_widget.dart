@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hand_cricket/utils/app_colors.dart';
+
+import '../../blocs/game_bloc.dart';
 
 class CountdownTimerWidget extends StatefulWidget {
   const CountdownTimerWidget({super.key});
@@ -24,7 +27,8 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget> {
   void _startCountdown() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_currentTime == 0) {
-        _timer?.cancel();
+        _closeCountdown();
+        BlocProvider.of<GameBloc>(context).add(const GameTimeoutEvent());
       } else {
         setState(() {
           _currentTime--;
@@ -33,9 +37,13 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget> {
     });
   }
 
+  void _closeCountdown() {
+    _timer?.cancel();
+  }
+
   @override
   void dispose() {
-    _timer?.cancel();
+    _closeCountdown();
     super.dispose();
   }
 
@@ -54,7 +62,7 @@ class CountdownTimerWidgetState extends State<CountdownTimerWidget> {
             style: const TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
-              color:AppColors.colorFFFFFF,
+              color: AppColors.colorFFFFFF,
             ),
           ),
         ),

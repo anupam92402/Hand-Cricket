@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hand_cricket/domain/models/route/players_info_route_model.dart';
 import 'package:hand_cricket/utils/routes_name.dart';
 
+import '../../../domain/models/dto/player_model.dart';
 import '../../../utils/app_colors.dart';
 import '../../../utils/assets_path.dart';
 import '../../../utils/string_constants.dart';
@@ -21,7 +23,19 @@ class BottomButtonWidget extends StatelessWidget {
               fit: BoxFit.contain,
             ));
         if (context.mounted) {
-          Navigator.pushNamed(context, RoutesName.gameScreen);
+          Navigator.pushNamed(context, RoutesName.gameScreen,
+              arguments: PlayerInfoRouteModel(
+                  player: PlayerModel(
+                      name: 'f',
+                      totalScore: 0,
+                      scoreList: [],
+                      ballBowled: 0,
+                      playerType: PlayerType.player),
+                  bot: PlayerModel(  name: 'p',
+                      totalScore: 0,
+                      scoreList: [],
+                      ballBowled: 0,
+                      playerType: PlayerType.bot)));
         }
       },
       child: Container(

@@ -14,5 +14,8 @@ class StringConstants {
   static const three = '3';
   static const pickNumberBeforeTimer = 'Pick a number before timer runs out';
   static const scapia = 'scapia';
+  static const timeout = 'Timeout';
+  static const youRanOutTime = 'You ran out time. Please try again';
+  static const okay = 'Okay';
 
 }
